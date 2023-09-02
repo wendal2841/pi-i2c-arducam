@@ -28,7 +28,7 @@ def parseKey(k, focuser):
     focus_step = 100
     zoom_step = 100
 
-    if k == curses.BUTTON_SHIFT:
+    if k == ord('z'):
         motor_step = motor_step * 2
         focus_step = focus_step * 2
         zoom_step = zoom_step * 2
