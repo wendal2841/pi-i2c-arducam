@@ -84,7 +84,7 @@ def draw_menu(stdscr, i2c_bus):
 
         parseKey(k, focuser)
 
-        RenderStatusBar(stdscr)
+        # RenderStatusBar(stdscr)
         RenderMiddleText(stdscr, k, focuser)
         stdscr.refresh()
 
