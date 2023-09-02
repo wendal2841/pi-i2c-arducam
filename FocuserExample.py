@@ -8,7 +8,7 @@ def RenderMiddleText(stdscr, k, focuser):
     focus_and_zoom = "Reset Focus and Zoom ('r' Key)";
     motor_x = "MotorX ('w'-'s' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_X)));
     motor_y = "MotorY ('a'-'d' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_Y)));
-    ircut = "IRCUT: {}".format(str(focuser.get(Focuser.OPT_IRCUT)));
+    ircut = "IRCUT ('i' Key): {}".format(str(focuser.get(Focuser.OPT_IRCUT)));
 
     combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
         last_key_pressed,
@@ -48,7 +48,7 @@ def parseKey(k, focuser):
         focuser.set(Focuser.OPT_FOCUS, focuser.get(Focuser.OPT_FOCUS) + focus_step)
     elif k == curses.KEY_LEFT:
         focuser.set(Focuser.OPT_FOCUS, focuser.get(Focuser.OPT_FOCUS) - focus_step)
-    elif k == 32:
+    elif k == ord('i'):
         focuser.set(Focuser.OPT_IRCUT, focuser.get(Focuser.OPT_IRCUT) ^ 0x0001)
 
 
