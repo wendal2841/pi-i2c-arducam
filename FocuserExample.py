@@ -98,8 +98,8 @@ def draw_menu(stdscr, i2c_bus):
 
         parseKey(k, focuser)
 
-        whstr = "Width: {}, Height: {}".format(width, height)
-        stdscr.addstr(0, 0, whstr, curses.color_pair(1))
+        # whstr = "Width: {}, Height: {}".format(width, height)
+        # stdscr.addstr(0, 0, whstr, curses.color_pair(1))
 
         RenderStatusBar(stdscr)
         RenderMiddleText(stdscr, k, focuser)
