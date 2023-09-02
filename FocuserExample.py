@@ -9,7 +9,7 @@ def RenderMiddleText(stdscr, k, focuser):
     zoom = "Zoom (Up-Down Arrow): {}\n".format(str(focuser.get(Focuser.OPT_ZOOM))[:width - 1]);
     motor_x = "MotorX ('w'-'s' Key): {}\n".format(str(focuser.get(Focuser.OPT_MOTOR_X))[:width - 1]);
     motor_y = "MotorY ('a'-'d' Key): {}\n".format(str(focuser.get(Focuser.OPT_MOTOR_Y))[:width - 1]);
-    ircut = "IRCUT: {}\n".format(focuser.get(Focuser.OPT_IRCUT));
+    ircut = "IRCUT: {}\n".format(str(focuser.get(Focuser.OPT_IRCUT))[:width - 1]);
 
     combined_values = "{}{}{}{}{}{}".format(
         last_key_pressed,
