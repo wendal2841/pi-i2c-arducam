@@ -1,6 +1,8 @@
 from Focuser import Focuser
 import curses
 
+spead = 1
+
 def RenderMiddleText(stdscr, k, focuser):
     last_key_pressed = "Last key pressed: {}".format(k);
     focus = "Focus (Left-Right Arrow): {}".format(str(focuser.get(Focuser.OPT_FOCUS)));
@@ -9,6 +11,7 @@ def RenderMiddleText(stdscr, k, focuser):
     motor_x = "MotorX ('w'-'s' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_X)));
     motor_y = "MotorY ('a'-'d' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_Y)));
     ircut = "IRCUT ('i' Key): {}".format(str(focuser.get(Focuser.OPT_IRCUT)));
+    speadInfo = "Spead ('+'-'-' Key): {}".format(spead);
 
     combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
         last_key_pressed,
@@ -18,6 +21,7 @@ def RenderMiddleText(stdscr, k, focuser):
         motor_x,
         motor_y,
         ircut,
+        spead,
     );
 
     stdscr.addstr(0, 0, combined_values)
