@@ -15,24 +15,6 @@ def RenderStatusBar(stdscr):
     stdscr.attroff(curses.color_pair(3))
 
 
-def RenderDescription(stdscr):
-    focus_desc = "Focus    : Left-Right Arrow"
-    zoom_desc = "Zoom     : Up-Down Arrow"
-    motor_x_desc = "MotorX   : 'w'-'s' Key"
-    motor_y_desc = "MotorY   : 'a'-'d' Key"
-    ircut_desc = "IRCUT    : Space"
-    snapshot_desc = "Snapshot : 'c' Key"
-
-    desc_y = 1
-
-    stdscr.addstr(desc_y + 1, 0, focus_desc, curses.color_pair(1))
-    stdscr.addstr(desc_y + 2, 0, zoom_desc, curses.color_pair(1))
-    stdscr.addstr(desc_y + 3, 0, motor_x_desc, curses.color_pair(1))
-    stdscr.addstr(desc_y + 4, 0, motor_y_desc, curses.color_pair(1))
-    stdscr.addstr(desc_y + 5, 0, ircut_desc, curses.color_pair(1))
-    stdscr.addstr(desc_y + 7, 0, snapshot_desc, curses.color_pair(1))
-
-
 def RenderMiddleText(stdscr, k, focuser):
     height, width = stdscr.getmaxyx()
     subtitle = ""[:width - 1]
@@ -119,7 +101,6 @@ def draw_menu(stdscr, i2c_bus):
         whstr = "Width: {}, Height: {}".format(width, height)
         stdscr.addstr(0, 0, whstr, curses.color_pair(1))
 
-        # RenderDescription(stdscr)
         RenderStatusBar(stdscr)
         RenderMiddleText(stdscr, k, focuser)
         stdscr.refresh()
