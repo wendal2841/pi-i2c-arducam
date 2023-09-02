@@ -7,7 +7,7 @@ class Camera(object):
     cam = None
     _value_lock = None
 
-    def __init__(self, width=640, height=360):
+    def __init__(self, width=40, height=225):
         self._value_lock = threading.Lock()
         self.open_camera(width, height)
 
