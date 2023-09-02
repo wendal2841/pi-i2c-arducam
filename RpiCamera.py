@@ -24,6 +24,7 @@ class Camera(object):
             self.cam.start_preview(Preview.QTGL)
         else:
             self.cam.start_preview()
+
         self.cam.start()
 
     def stop_preview(self):
