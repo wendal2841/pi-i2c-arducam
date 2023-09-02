@@ -7,11 +7,11 @@ class Camera(object):
     cam = None
     _value_lock = None
 
-    def __init__(self, width=400, height=225):
+    def __init__(self, width=360, height=240):
         self._value_lock = threading.Lock()
         self.open_camera(width, height)
 
-    def open_camera(self, width=640, height=360):
+    def open_camera(self, width=360, height=240):
         self.cam = Picamera2()
         self.cam.configure(self.cam.create_preview_configuration(main={"size": (width, height)}, buffer_count=4))
 
