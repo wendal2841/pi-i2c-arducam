@@ -1,19 +1,19 @@
-from Focuser import Focuser
+from I2cProvider import I2cProvider
 import curses
 
 global spead
 spead = 1
 
 
-def RenderMiddleText(stdscr, k, focuser):
-    last_key_pressed = "Last key pressed: {}".format(k);
-    focus = "Focus (Left-Right Arrow): {}".format(str(focuser.get(Focuser.OPT_FOCUS)));
-    zoom = "Zoom (Up-Down Arrow): {}".format(str(focuser.get(Focuser.OPT_ZOOM)));
-    focus_and_zoom = "Reset Focus and Zoom ('r' Key)";
-    motor_x = "MotorX ('w'-'s' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_X)));
-    motor_y = "MotorY ('a'-'d' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_Y)));
-    ircut = "IRCUT ('i' Key): {}".format(str(focuser.get(Focuser.OPT_IRCUT)));
-    speadInfo = "Spead ('+'-'-' Key): {}".format(spead);
+def RenderMiddleText(stdscr, key, i2c_provider):
+    last_key_pressed = "Last key pressed: {}".format(key)
+    focus = "Focus (Left-Right Arrow): {}".format(str(i2c_provider.get(I2cProvider.OPT_FOCUS)))
+    zoom = "Zoom (Up-Down Arrow): {}".format(str(i2c_provider.get(I2cProvider.OPT_ZOOM)))
+    focus_and_zoom = "Reset Focus and Zoom ('r' Key)"
+    motor_x = "MotorX ('w'-'s' Key): {}".format(str(i2c_provider.get(I2cProvider.OPT_MOTOR_X)))
+    motor_y = "MotorY ('a'-'d' Key): {}".format(str(i2c_provider.get(I2cProvider.OPT_MOTOR_Y)))
+    ircut = "IRCUT ('i' Key): {}".format(str(i2c_provider.get(I2cProvider.OPT_IRCUT)))
+    speadInfo = "Spead ('+'-'-' Key): {}".format(spead)
 
     combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n".format(
         last_key_pressed,
@@ -24,58 +24,58 @@ def RenderMiddleText(stdscr, k, focuser):
         motor_y,
         ircut,
         speadInfo,
-    );
+    )
 
     stdscr.addstr(0, 0, combined_values)
 
 
-def parseKey(k, focuser):
+def parseKey(key, i2c_provider):
     global spead
     motor_step = 5 * spead
     focus_step = 100 * spead
     zoom_step = 100 * spead
 
-    if k == ord('+') or k == ord('='): spead = spead + 1
-    elif k == ord('-') and spead > 1: spead = spead - 1
+    if key == ord('+') or key == ord('='): spead = spead + 1
+    elif key == ord('-') and spead > 1: spead = spead - 1
 
-    if k == ord('s'):
-        focuser.set(Focuser.OPT_MOTOR_Y, focuser.get(Focuser.OPT_MOTOR_Y) + motor_step)
-    elif k == ord('w'):
-        focuser.set(Focuser.OPT_MOTOR_Y, focuser.get(Focuser.OPT_MOTOR_Y) - motor_step)
-    elif k == ord('d'):
-        focuser.set(Focuser.OPT_MOTOR_X, focuser.get(Focuser.OPT_MOTOR_X) - motor_step)
-    elif k == ord('a'):
-        focuser.set(Focuser.OPT_MOTOR_X, focuser.get(Focuser.OPT_MOTOR_X) + motor_step)
+    if key == ord('s'):
+        i2c_provider.set(I2cProvider.OPT_MOTOR_Y, i2c_provider.get(I2cProvider.OPT_MOTOR_Y) + motor_step)
+    elif key == ord('w'):
+        i2c_provider.set(I2cProvider.OPT_MOTOR_Y, i2c_provider.get(I2cProvider.OPT_MOTOR_Y) - motor_step)
+    elif key == ord('d'):
+        i2c_provider.set(I2cProvider.OPT_MOTOR_X, i2c_provider.get(I2cProvider.OPT_MOTOR_X) - motor_step)
+    elif key == ord('a'):
+        i2c_provider.set(I2cProvider.OPT_MOTOR_X, i2c_provider.get(I2cProvider.OPT_MOTOR_X) + motor_step)
 
-    if k == curses.KEY_UP:
-        focuser.set(Focuser.OPT_ZOOM, focuser.get(Focuser.OPT_ZOOM) + zoom_step)
-    elif k == curses.KEY_DOWN:
-        focuser.set(Focuser.OPT_ZOOM, focuser.get(Focuser.OPT_ZOOM) - zoom_step)
-    elif k == curses.KEY_RIGHT:
-        focuser.set(Focuser.OPT_FOCUS, focuser.get(Focuser.OPT_FOCUS) + focus_step)
-    elif k == curses.KEY_LEFT:
-        focuser.set(Focuser.OPT_FOCUS, focuser.get(Focuser.OPT_FOCUS) - focus_step)
+    if key == curses.KEY_UP:
+        i2c_provider.set(I2cProvider.OPT_ZOOM, i2c_provider.get(I2cProvider.OPT_ZOOM) + zoom_step)
+    elif key == curses.KEY_DOWN:
+        i2c_provider.set(I2cProvider.OPT_ZOOM, i2c_provider.get(I2cProvider.OPT_ZOOM) - zoom_step)
+    elif key == curses.KEY_RIGHT:
+        i2c_provider.set(I2cProvider.OPT_FOCUS, i2c_provider.get(I2cProvider.OPT_FOCUS) + focus_step)
+    elif key == curses.KEY_LEFT:
+        i2c_provider.set(I2cProvider.OPT_FOCUS, i2c_provider.get(I2cProvider.OPT_FOCUS) - focus_step)
 
-    if k == ord('r'):
-        focuser.reset(Focuser.OPT_FOCUS)
-        focuser.reset(Focuser.OPT_ZOOM)
-    elif k == ord('i'):
-        focuser.set(Focuser.OPT_IRCUT, focuser.get(Focuser.OPT_IRCUT) ^ 0x0001)
+    if key == ord('r'):
+        i2c_provider.reset(I2cProvider.OPT_FOCUS)
+        i2c_provider.reset(I2cProvider.OPT_ZOOM)
+    elif key == ord('i'):
+        i2c_provider.set(I2cProvider.OPT_IRCUT, i2c_provider.get(I2cProvider.OPT_IRCUT) ^ 0x0001)
 
 
 def draw_menu(stdscr, i2c_bus):
-    focuser = Focuser(i2c_bus)
-    k = 0
+    i2c_provider = I2cProvider(i2c_bus)
+    key = 0
     stdscr.clear()
     stdscr.refresh()
 
-    while (k != ord('q')):
+    while (key != ord('q')):
         stdscr.clear()
         curses.flushinp()
-        parseKey(k, focuser)
-        RenderMiddleText(stdscr, k, focuser)
+        parseKey(key, i2c_provider)
+        RenderMiddleText(stdscr, key, i2c_provider)
         stdscr.refresh()
-        k = stdscr.getch()
+        key = stdscr.getch()
 
 
 def main():

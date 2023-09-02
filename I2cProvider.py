@@ -2,7 +2,7 @@ import sys
 import time
 
 
-class Focuser:
+class I2cProvider:
     bus = None
     CHIP_I2C_ADDR = 0x0C
     BUSY_REG_ADDR = 0x04
@@ -56,13 +56,16 @@ class Focuser:
 
     def read(self, chip_addr, reg_addr):
         value = self.bus.read_word_data(chip_addr, reg_addr)
+
         value = ((value & 0x00FF) << 8) | ((value & 0xFF00) >> 8)
+
         return value
 
     def write(self, chip_addr, reg_addr, value):
         if value < 0: value = 0
 
         value = ((value & 0x00FF) << 8) | ((value & 0xFF00) >> 8)
+
         return self.bus.write_word_data(chip_addr, reg_addr, value)
 
     def isBusy(self):
@@ -70,7 +73,6 @@ class Focuser:
 
     def waitingForFree(self):
         count = 0
-        begin = time.time()
 
         while self.isBusy() and count < (5 / 0.01):
             count += 1
@@ -78,6 +80,7 @@ class Focuser:
 
     def reset(self, opt, flag=1):
         self.waitingForFree()
+
         info = self.opts[opt]
 
         if info == None or info["RESET_ADDR"] == None:
