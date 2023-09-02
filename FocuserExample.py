@@ -32,7 +32,7 @@ def RenderMiddleText(stdscr, key, i2c_provider):
 def parseKey(key, i2c_provider):
     global spead
     motor_step = 5 * spead
-    focus_step = 100 * spead
+    focus_step = 50 * spead
     zoom_step = 100 * spead
 
     if key == ord('+') or key == ord('='): spead = spead + 1
