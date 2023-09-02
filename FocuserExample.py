@@ -2,15 +2,13 @@ from Focuser import Focuser
 import curses
 
 def RenderMiddleText(stdscr, k, focuser):
-    height, width = stdscr.getmaxyx()
-
     last_key_pressed = "Last key pressed: {}".format(k);
-    focus = "Focus (Left-Right Arrow): {}".format(str(focuser.get(Focuser.OPT_FOCUS))[:width - 1]);
-    zoom = "Zoom (Up-Down Arrow): {}".format(str(focuser.get(Focuser.OPT_ZOOM))[:width - 1]);
+    focus = "Focus (Left-Right Arrow): {}".format(str(focuser.get(Focuser.OPT_FOCUS)));
+    zoom = "Zoom (Up-Down Arrow): {}".format(str(focuser.get(Focuser.OPT_ZOOM)));
     focus_and_zoom = "Reset Focus and Zoom ('r' Key)";
-    motor_x = "MotorX ('w'-'s' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_X))[:width - 1]);
-    motor_y = "MotorY ('a'-'d' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_Y))[:width - 1]);
-    ircut = "IRCUT: {}".format(str(focuser.get(Focuser.OPT_IRCUT))[:width - 1]);
+    motor_x = "MotorX ('w'-'s' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_X)));
+    motor_y = "MotorY ('a'-'d' Key): {}".format(str(focuser.get(Focuser.OPT_MOTOR_Y)));
+    ircut = "IRCUT: {}".format(str(focuser.get(Focuser.OPT_IRCUT)));
 
     combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
         last_key_pressed,
