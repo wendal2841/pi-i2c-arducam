@@ -36,7 +36,7 @@ def parseKey(k, focuser):
     zoom_step = 100 * spead
 
     if k == ord('+') or k == ord('='): spead = spead + 1
-    elif k == ord('-') and spead >= 1: spead = spead - 1
+    elif k == ord('-') and spead > 1: spead = spead - 1
 
     if k == ord('s'):
         focuser.set(Focuser.OPT_MOTOR_Y, focuser.get(Focuser.OPT_MOTOR_Y) + motor_step)
