@@ -14,7 +14,7 @@ class Camera(object):
         self.cam.configure(
             self.cam.create_preview_configuration(
                 ain={"size": (width, height)},
-                buffer_count=12
+                buffer_count=8
             )
         )
 
