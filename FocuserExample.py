@@ -13,7 +13,7 @@ def RenderMiddleText(stdscr, k, focuser):
     ircut = "IRCUT ('i' Key): {}".format(str(focuser.get(Focuser.OPT_IRCUT)));
     speadInfo = "Spead ('+'-'-' Key): {}".format(spead);
 
-    combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
+    combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
         last_key_pressed,
         focus,
         zoom,
@@ -21,7 +21,7 @@ def RenderMiddleText(stdscr, k, focuser):
         motor_x,
         motor_y,
         ircut,
-        spead,
+        speadInfo,
     );
 
     stdscr.addstr(0, 0, combined_values)
