@@ -35,7 +35,7 @@ def parseKey(k, focuser):
     focus_step = 100
     zoom_step = 100
 
-    if k == ord('+'): spead = spead + 1
+    if k == ord('+') or k == ord('='): spead = spead + 1
     elif k == ord('-'): spead = spead - 1
 
     if k == ord('s'):
