@@ -18,14 +18,21 @@ def RenderStatusBar(stdscr):
 def RenderMiddleText(stdscr, k, focuser):
     height, width = stdscr.getmaxyx()
 
-    combined_values = "Last key pressed: {} \nFocus (Left-Right Arrow): {} \nZoom (Up-Down Arrow): {} \nMotorX ('w'-'s' Key): {} \nMotorY ('a'-'d' Key): {} \nIRCUT: {}".format(
-        k,
-        str(focuser.get(Focuser.OPT_FOCUS))[:width - 1],
-        str(focuser.get(Focuser.OPT_ZOOM))[:width - 1],
-        str(focuser.get(Focuser.OPT_MOTOR_X))[:width - 1],
-        str(focuser.get(Focuser.OPT_MOTOR_Y))[:width - 1],
-        str(focuser.get(Focuser.OPT_IRCUT))[:width - 1]
-    )
+    last_key_pressed = "Last key pressed: {}\n".format(k);
+    focus = "Focus (Left-Right Arrow): {}\n".format(str(focuser.get(Focuser.OPT_FOCUS))[:width - 1]);
+    zoom = "Zoom (Up-Down Arrow): {}\n".format(str(focuser.get(Focuser.OPT_ZOOM))[:width - 1]);
+    motor_x = "MotorX ('w'-'s' Key): {}\n".format(str(focuser.get(Focuser.OPT_MOTOR_X))[:width - 1]);
+    motor_y = "MotorY ('a'-'d' Key): {}\n".format(str(focuser.get(Focuser.OPT_MOTOR_Y))[:width - 1]);
+    ircut = "IRCUT: {}\n".format(str(focuser.get(Focuser.OPT_IRCUT))[:width - 1]);
+
+    combined_values = "{}{}{}{}{}{}".format(
+        last_key_pressed,
+        focus,
+        zoom,
+        motor_x,
+        motor_y,
+        ircut,
+    );
 
     stdscr.addstr(0, 0, combined_values)
 
