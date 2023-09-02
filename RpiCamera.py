@@ -11,7 +11,7 @@ class Camera(object):
 
     def open_camera(self, width=360, height=240):
         self.cam = Picamera2()
-        self.cam.configure(self.cam.create_preview_configuration(main={"size": (width, height)}, buffer_count=12))
+        self.cam.configure(self.cam.create_preview_configuration(main={"size": (width, height)}, buffer_count=24))
 
     def start_preview(self, a_preview: bool = False):
         if a_preview == True:
