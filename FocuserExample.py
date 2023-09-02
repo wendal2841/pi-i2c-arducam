@@ -28,6 +28,11 @@ def parseKey(k, focuser):
     focus_step = 100
     zoom_step = 100
 
+    if k == curses.BUTTON_SHIFT:
+        motor_step = motor_step * 2
+        focus_step = focus_step * 2
+        zoom_step = zoom_step * 2
+
     if k == ord('s'):
         focuser.set(Focuser.OPT_MOTOR_Y, focuser.get(Focuser.OPT_MOTOR_Y) + motor_step)
     elif k == ord('w'):
@@ -37,10 +42,7 @@ def parseKey(k, focuser):
     elif k == ord('a'):
         focuser.set(Focuser.OPT_MOTOR_X, focuser.get(Focuser.OPT_MOTOR_X) + motor_step)
 
-    if k == ord('r'):
-        focuser.reset(Focuser.OPT_FOCUS)
-        focuser.reset(Focuser.OPT_ZOOM)
-    elif k == curses.KEY_UP:
+    if k == curses.KEY_UP:
         focuser.set(Focuser.OPT_ZOOM, focuser.get(Focuser.OPT_ZOOM) + zoom_step)
     elif k == curses.KEY_DOWN:
         focuser.set(Focuser.OPT_ZOOM, focuser.get(Focuser.OPT_ZOOM) - zoom_step)
@@ -48,6 +50,10 @@ def parseKey(k, focuser):
         focuser.set(Focuser.OPT_FOCUS, focuser.get(Focuser.OPT_FOCUS) + focus_step)
     elif k == curses.KEY_LEFT:
         focuser.set(Focuser.OPT_FOCUS, focuser.get(Focuser.OPT_FOCUS) - focus_step)
+
+    if k == ord('r'):
+        focuser.reset(Focuser.OPT_FOCUS)
+        focuser.reset(Focuser.OPT_ZOOM)
     elif k == ord('i'):
         focuser.set(Focuser.OPT_IRCUT, focuser.get(Focuser.OPT_IRCUT) ^ 0x0001)
 
