@@ -39,10 +39,10 @@ def RenderMiddleText(stdscr, k, focuser):
     subtitle = ""[:width - 1]
     keystr = "Last key pressed: {}".format(k)[:width - 1]
 
-    focus_value = "Focus    : {}".format(focuser.get(Focuser.OPT_FOCUS))[:width - 1]
-    zoom_value = "Zoom     : {}".format(focuser.get(Focuser.OPT_ZOOM))[:width - 1]
-    motor_x_val = "MotorX   : {}".format(focuser.get(Focuser.OPT_MOTOR_X))[:width - 1]
-    motor_y_val = "MotorY   : {}".format(focuser.get(Focuser.OPT_MOTOR_Y))[:width - 1]
+    focus_value = "Focus (Left-Right Arrow) : {}".format(focuser.get(Focuser.OPT_FOCUS))[:width - 1]
+    zoom_value = "Zoom (Up-Down Arrow)      : {}".format(focuser.get(Focuser.OPT_ZOOM))[:width - 1]
+    motor_x_val = "MotorX ('w'-'s' Key)     : {}".format(focuser.get(Focuser.OPT_MOTOR_X))[:width - 1]
+    motor_y_val = "MotorY ('a'-'d' Key)     : {}".format(focuser.get(Focuser.OPT_MOTOR_Y))[:width - 1]
     ircut_val = "IRCUT    : {}".format(focuser.get(Focuser.OPT_IRCUT))[:width - 1]
 
     if k == 0:
@@ -123,7 +123,7 @@ def draw_menu(stdscr, i2c_bus):
         whstr = "Width: {}, Height: {}".format(width, height)
         stdscr.addstr(0, 0, whstr, curses.color_pair(1))
 
-        RenderDescription(stdscr)
+        # RenderDescription(stdscr)
         RenderStatusBar(stdscr)
         RenderMiddleText(stdscr, k, focuser)
         stdscr.refresh()
