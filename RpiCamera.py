@@ -39,7 +39,7 @@ if __name__ == "__main__":
     camera = Camera()
     camera.start_preview(True)
     while True:
-        time.sleep(10)
+        time.sleep(1)
 
     # camera.stop_preview(True)
     # camera.close()
