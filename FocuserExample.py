@@ -20,11 +20,11 @@ def RenderMiddleText(stdscr, k, focuser):
 
     combined_values = "Last key pressed: {} Focus (Left-Right Arrow): {} Zoom (Up-Down Arrow): {} MotorX ('w'-'s' Key): {} MotorY ('a'-'d' Key): {} IRCUT: {}".format(
         k,
-        focuser.get(Focuser.OPT_FOCUS)[:width - 1],
-        focuser.get(Focuser.OPT_ZOOM)[:width - 1],
-        focuser.get(Focuser.OPT_MOTOR_X)[:width - 1],
-        focuser.get(Focuser.OPT_MOTOR_Y)[:width - 1],
-        focuser.get(Focuser.OPT_IRCUT)[:width - 1]
+        str(focuser.get(Focuser.OPT_FOCUS))[:width - 1],
+        str(focuser.get(Focuser.OPT_ZOOM))[:width - 1],
+        str(focuser.get(Focuser.OPT_MOTOR_X))[:width - 1],
+        str(focuser.get(Focuser.OPT_MOTOR_Y))[:width - 1],
+        str(focuser.get(Focuser.OPT_IRCUT))[:width - 1]
     )
 
     stdscr.addstr(0, 0, combined_values)
