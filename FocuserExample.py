@@ -35,7 +35,6 @@ def RenderDescription(stdscr):
 
 def RenderMiddleText(stdscr, k, focuser):
     height, width = stdscr.getmaxyx()
-    title = "Arducam Controller"[:width - 1]
     subtitle = ""[:width - 1]
     keystr = "Last key pressed: {}".format(k)[:width - 1]
 
@@ -48,7 +47,6 @@ def RenderMiddleText(stdscr, k, focuser):
     if k == 0:
         keystr = "No key press detected..."[:width - 1]
 
-    start_x_title = int((width // 2) - (len(title) // 2) - len(title) % 2)
     start_x_subtitle = int((width // 2) - (len(subtitle) // 2) - len(subtitle) % 2)
     start_x_keystr = int((width // 2) - (len(keystr) // 2) - len(keystr) % 2)
     start_x_device_info = int((width // 2) - (len("Focus    : 00000") // 2) - len("Focus    : 00000") % 2)
@@ -56,8 +54,6 @@ def RenderMiddleText(stdscr, k, focuser):
 
     stdscr.attron(curses.color_pair(2))
     stdscr.attron(curses.A_BOLD)
-
-    stdscr.addstr(start_y, start_x_title, title)
 
     stdscr.attroff(curses.color_pair(2))
     stdscr.attroff(curses.A_BOLD)
