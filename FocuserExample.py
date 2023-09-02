@@ -6,7 +6,7 @@ spead = 1
 
 
 def RenderMiddleText(stdscr, key, i2c_provider):
-    last_key_pressed = "Last key pressed: {}".format(key)
+    last_key_pressed = "Last key pressed: {}".format(chr(key))
     focus = "Focus (Left-Right Arrow): {}".format(str(i2c_provider.get(I2cProvider.OPT_FOCUS)))
     zoom = "Zoom (Up-Down Arrow): {}".format(str(i2c_provider.get(I2cProvider.OPT_ZOOM)))
     focus_and_zoom = "Reset Focus and Zoom ('r' Key)"
