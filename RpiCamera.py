@@ -5,19 +5,13 @@ from picamera2 import Picamera2, Preview
 
 class Camera(object):
     cam = None
-    # _value_lock = None
 
     def __init__(self, width=360, height=240):
-        # self._value_lock = threading.Lock()
         self.open_camera(width, height)
 
     def open_camera(self, width=360, height=240):
         self.cam = Picamera2()
         self.cam.configure(self.cam.create_preview_configuration(main={"size": (width, height)}, buffer_count=4))
-
-    # def getFrame(self, a_wait: bool = True):
-    #     with self._value_lock:
-    #         return self.cam.capture_array(wait=a_wait)
 
     def start_preview(self, a_preview: bool = False):
         if a_preview == True:
