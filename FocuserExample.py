@@ -1,7 +1,9 @@
 from Focuser import Focuser
 import curses
 
+global spead
 spead = 1
+
 
 def RenderMiddleText(stdscr, k, focuser):
     last_key_pressed = "Last key pressed: {}".format(k);
@@ -13,7 +15,7 @@ def RenderMiddleText(stdscr, k, focuser):
     ircut = "IRCUT ('i' Key): {}".format(str(focuser.get(Focuser.OPT_IRCUT)));
     speadInfo = "Spead ('+'-'-' Key): {}".format(spead);
 
-    combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
+    combined_values = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n".format(
         last_key_pressed,
         focus,
         zoom,
@@ -28,14 +30,13 @@ def RenderMiddleText(stdscr, k, focuser):
 
 
 def parseKey(k, focuser):
+    global spead
     motor_step = 5
     focus_step = 100
     zoom_step = 100
 
-    if k == ord('z'):
-        motor_step = motor_step * 2
-        focus_step = focus_step * 2
-        zoom_step = zoom_step * 2
+    if k == ord('+'): spead = spead + 1
+    elif k == ord('-'): spead = spead - 1
 
     if k == ord('s'):
         focuser.set(Focuser.OPT_MOTOR_Y, focuser.get(Focuser.OPT_MOTOR_Y) + motor_step)
