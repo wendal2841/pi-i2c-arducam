@@ -18,7 +18,7 @@ def RenderStatusBar(stdscr):
 def RenderMiddleText(stdscr, k, focuser):
     height, width = stdscr.getmaxyx()
 
-    combined_values = "Last key pressed: {} Focus (Left-Right Arrow): {} Zoom (Up-Down Arrow): {} MotorX ('w'-'s' Key): {} MotorY ('a'-'d' Key): {} IRCUT: {}".format(
+    combined_values = "Last key pressed: {} \nFocus (Left-Right Arrow): {} \nZoom (Up-Down Arrow): {} \nMotorX ('w'-'s' Key): {} \nMotorY ('a'-'d' Key): {} \nIRCUT: {}".format(
         k,
         str(focuser.get(Focuser.OPT_FOCUS))[:width - 1],
         str(focuser.get(Focuser.OPT_ZOOM))[:width - 1],
