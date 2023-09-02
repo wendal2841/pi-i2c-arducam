@@ -1,11 +1,6 @@
 from Focuser import Focuser
 import curses
 
-global image_count
-
-image_count = 0
-
-
 def RenderMiddleText(stdscr, k, focuser):
     height, width = stdscr.getmaxyx()
 
@@ -31,7 +26,6 @@ def RenderMiddleText(stdscr, k, focuser):
 
 
 def parseKey(k, focuser):
-    global image_count
     motor_step = 5
     focus_step = 100
     zoom_step = 100
