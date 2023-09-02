@@ -31,12 +31,12 @@ def RenderMiddleText(stdscr, k, focuser):
 
 def parseKey(k, focuser):
     global spead
-    motor_step = 5
-    focus_step = 100
-    zoom_step = 100
+    motor_step = 5 * spead
+    focus_step = 100 * spead
+    zoom_step = 100 * spead
 
     if k == ord('+') or k == ord('='): spead = spead + 1
-    elif k == ord('-'): spead = spead - 1
+    elif k == ord('-') and spead >= 1: spead = spead - 1
 
     if k == ord('s'):
         focuser.set(Focuser.OPT_MOTOR_Y, focuser.get(Focuser.OPT_MOTOR_Y) + motor_step)
