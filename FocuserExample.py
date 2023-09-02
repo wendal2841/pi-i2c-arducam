@@ -6,6 +6,15 @@ global image_count
 image_count = 0
 
 
+def RenderStatusBar(stdscr):
+    height, width = stdscr.getmaxyx()
+    statusbarstr = "Press 'q' to exit"
+    stdscr.attron(curses.color_pair(3))
+    stdscr.addstr(height - 1, 0, statusbarstr)
+    stdscr.addstr(height - 1, len(statusbarstr), " " * (width - len(statusbarstr) - 1))
+    stdscr.attroff(curses.color_pair(3))
+
+
 def RenderMiddleText(stdscr, k, focuser):
     height, width = stdscr.getmaxyx()
 
@@ -72,9 +81,13 @@ def draw_menu(stdscr, i2c_bus):
     while (k != ord('q')):
         stdscr.clear()
         curses.flushinp()
+
         parseKey(k, focuser)
+
+        RenderStatusBar(stdscr)
         RenderMiddleText(stdscr, k, focuser)
         stdscr.refresh()
+
         k = stdscr.getch()
 
 
